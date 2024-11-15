@@ -1,79 +1,109 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Login and Product list - App - Documentación
 
-# Getting Started
+## Descripción del proyecto
+Este proyecto es una aplicación móvil desarrollada con React Native v0.76 sin el framework EXPO que muestra un listado de usuarios. La aplicación consume datos de la API (https://fakestoreapi.com/) y los presenta en una interfaz de usuario atractiva y responsive.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Rest used
 
-## Step 1: Start the Metro Server
+| Title | Type    | Request |
+| :---:   | :---: | :---: |
+| Login | POST   | https://fakestoreapi.com/auth/login   |
+| Productos | GET   | https://fakestoreapi.com/products   |
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Demo
+- Puedes decargar la app mediante el siguiente enlace [React Native App](https://drive.google.com/file/d/1dSLC4YnfihLFYkUSGySRygcadBazPGzu/view?usp=drive_link) 
+- Puedes ver el video demo con el siguiente enlace [React Native App User List](https://youtu.be/WQYM4b8G3Kk?si=ELnbUpgELlJSx27w) 
 
-```bash
-# using npm
+## Tecnologías utilizadas
+- React Native
+- React Native CLI (sin Expo)
+- Redux
+- Axios
+
+## Requisitos del sistema
+- Node.js (versión 18 o superior)
+- npm (versión 6 o superior)
+- React Native CLI (instalado de forma global)
+- Un emulador Android o iOS 
+
+## Instalación y configuración
+
+1. Clona el repositorio del proyecto:
+```
+git clone git@github.com:Albano7/SohoTestMyProducts.git
+```
+
+2. Navega hasta el directorio del proyecto:
+```
+cd SohoTestMyProducts
+```
+
+3. Instala las dependencias del proyecto:
+```
+npm install
+```
+
+4. Inicia el servidor de desarrollo de React Native:
+```
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+5. Ejecutar pruebas unitarias
+```
+npm test
 ```
 
-### For iOS
+## Estructura del proyecto
+El proyecto sigue una estructura de archivos y carpetas siguiendo el patron de diseño convencional para el proyecto DDD - Domain Driven Design y parte de los principios SOLID en React Native:
 
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```
+SohoTestMyProducts/
+├── android/
+├── ios/
+├── app/
+│   ├── api/
+│   ├── components/
+│   ├── features/
+│   ├── styles/
+│   ├── store/
+│   ├── hooks/
+│   ├── interface/
+│   ├── commands/
+│   └── ProductList.tsx
+├── .gitignore
+├── babel.config.js
+├── metro.config.js
+├── package.json
+├── App.tsx
+├── index.js
+└── README.md
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Esta estructura de carpetas se alinea con los principios del patrón Feature-Driven Development (FDD) y Domain-Driven Design (DDD):
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+FDD: Organiza el código en torno a las características de la aplicación, lo que facilita el desarrollo y el mantenimiento a medida que el proyecto crece.
+DDD: Divide el código en torno a los diferentes dominios de la aplicación, lo que ayuda a mantener una arquitectura limpia y modular.
 
-## Step 3: Modifying your App
+- `android/` y `ios/`: Contiene los archivos nativos de Android e iOS.
+- `app/`: Alberga todo el código fuente de la aplicación React Native.
+  - `components/`: Contiene los componentes reutilizables de la aplicación.
+  - `features/`: Incluye la nueva raquitectura lógica de Redux (acciones, reducers, store).
+  - `styles/`: Almacena los estilos CSS utilizados en la aplicación.
+  - `hooks/`: Contiene funciones y utilidades auxiliares.
+  - `commands/`: Contiene funciones que interacturan con los actions de redux.
+  - `ProductList.tsx`: El componente principal de la aplicación.
+- `.gitignore`: Especifica qué archivos y carpetas deben ser ignorados por Git.
+- `babel.config.js` y `metro.config.js`: Configuración de Babel y Metro, respectivamente.
+- `package.json`: Contiene información del proyecto y las dependencias.
+- `README.md`: Este archivo de documentación.
+- `index.js`: El punto de entrada de la aplicación.
 
-Now that you have successfully run the app, let's modify it.
+## Scripts de npm disponibles
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+- `npm start`: Inicia el servidor de desarrollo de React Native.
+- `npm run android`: Ejecuta la aplicación en un emulador o dispositivo Android.
+- `npm run ios`: Ejecuta la aplicación en un emulador o dispositivo iOS.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## Licencia
+Este proyecto se distribuye bajo la [Licencia MIT](LICENSE).
