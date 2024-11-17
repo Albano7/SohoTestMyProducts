@@ -76,7 +76,7 @@ const Login = () => {
               source={require('@assets/ListadoProductos_logo.png')}
             />
             <Text style={Theme.App.titleLoginApp}>
-              ListadoProductos
+              Lista de productos
             </Text>
           </Animated.View>
           <View style={Theme.Login.formContainer}>

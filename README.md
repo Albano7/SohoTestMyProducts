@@ -1,29 +1,34 @@
 # Login and Product list - App - Documentación
 
 ## Descripción del proyecto
-Este proyecto es una aplicación móvil desarrollada con React Native v0.76 sin el framework EXPO que muestra un listado de usuarios. La aplicación consume datos de la API (https://fakestoreapi.com/) y los presenta en una interfaz de usuario atractiva y responsive.
+Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimientos, desarrollada con TypeScript y React Native v0.76 sin el framework EXPO, esta app muestra 3 vistas: inicio de sesión, lista de productos y detalle de productos. He llamado a la aplicación "Lista de productos". La aplicación consume datos de la API (https://fakestoreapi.com/) y presenta la interfaz con diseños atractivos y responsivos.
 
-## Rest used
+## Consultas realizadas
 
 | Title | Type    | Request |
 | :---:   | :---: | :---: |
 | Login | POST   | https://fakestoreapi.com/auth/login   |
 | Productos | GET   | https://fakestoreapi.com/products   |
+| Detalle de usuario | GET   | https://fakestoreapi.com/users/${id-usuario}   |
 
 
 ## Demo
-- Puedes decargar la app mediante el siguiente enlace [React Native App](https://drive.google.com/file/d/1dSLC4YnfihLFYkUSGySRygcadBazPGzu/view?usp=drive_link) 
-- Puedes ver el video demo con el siguiente enlace [React Native App User List](https://youtu.be/WQYM4b8G3Kk?si=ELnbUpgELlJSx27w) 
+- Puedes decargar la app mediante el siguiente enlace [React Native App]() 
+- Puedes ver el video demo con el siguiente enlace [React Native App User List]() 
 
-## Tecnologías utilizadas
+## Dependencias usadas
 - React Native
 - React Native CLI (sin Expo)
 - Redux
 - Axios
+- @react-native-async-storage/async-storage
+- @react-native-material/core
+- @react-navigation
+- formik
+- yup
 
 ## Requisitos del sistema
 - Node.js (versión 18 o superior)
-- npm (versión 6 o superior)
 - React Native CLI (instalado de forma global)
 - Un emulador Android o iOS 
 
@@ -92,7 +97,7 @@ DDD: Divide el código en torno a los diferentes dominios de la aplicación, lo 
   - `styles/`: Almacena los estilos CSS utilizados en la aplicación.
   - `hooks/`: Contiene funciones y utilidades auxiliares.
   - `commands/`: Contiene funciones que interacturan con los actions de redux.
-  - `ProductList.tsx`: El componente principal de la aplicación.
+  - `views/`: Contiene las vistas mostradas al usuario.
 - `.gitignore`: Especifica qué archivos y carpetas deben ser ignorados por Git.
 - `babel.config.js` y `metro.config.js`: Configuración de Babel y Metro, respectivamente.
 - `package.json`: Contiene información del proyecto y las dependencias.

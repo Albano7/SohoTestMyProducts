@@ -30,7 +30,7 @@ const SplashScreen = () => {
         source={require('@assets/ListadoProductos_logo.png')}
       />
       <Text style={Theme.App.titleStartApp}>
-        Bienvenido a Listado Productos
+        Bienvenido a Lista de productos
       </Text>
       <ActivityIndicator size="large" color={Colors.white} />
     </View>
