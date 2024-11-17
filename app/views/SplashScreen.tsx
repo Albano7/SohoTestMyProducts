@@ -24,13 +24,13 @@ const SplashScreen = () => {
   }, [])
   
   return (
-    <View style={Theme.App.container_bg}>
+    <View style={Theme.App.containerBg}>
       <Image
-        style={Theme.App.logo_start_app}
+        style={Theme.App.logoStartApp}
         source={require('@assets/ListadoProductos_logo.png')}
       />
-      <Text style={Theme.App.title_start_app}>
-        Bienvenido a ListadoProductos
+      <Text style={Theme.App.titleStartApp}>
+        Bienvenido a Listado Productos
       </Text>
       <ActivityIndicator size="large" color={Colors.white} />
     </View>

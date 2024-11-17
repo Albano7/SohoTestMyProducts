@@ -1,6 +1,6 @@
-import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, Text, View, Animated } from 'react-native';
 import Colors from '@app/styles/colors';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@app/store';
 import Theme from '@app/styles';
@@ -14,6 +14,15 @@ const ProductList = ({ testID }: { testID: string }) => {
   const productsListError = useSelector((state: RootState) => state.products?.productsListError);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
+  const slideAnim = useRef(new Animated.Value(50)).current;
+
+  useEffect(() => {
+    Animated.timing(slideAnim, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -24,11 +33,12 @@ const ProductList = ({ testID }: { testID: string }) => {
     }
   };
 
-  const onPressItem = (value: ProductType) => {
+  const onPressItem = (productSelected: ProductType) => {
     navigation.dispatch(
-      StackActions.push(Routes.ProductDetail)
+      StackActions.push(Routes.ProductDetail, {
+        productSelected
+      })
     );
-      
   }
 
   return (
@@ -38,20 +48,30 @@ const ProductList = ({ testID }: { testID: string }) => {
           Listado de productos
         </Text>
       </View>
-      <View style={Theme.ProductList.contentContainer}>
+      <Animated.View 
+        style={[
+          Theme.ProductList.contentContainer,
+          {
+            transform: [{
+              translateY: slideAnim
+            }]
+          }
+        ]} 
+        testID='container_products_list'
+      >
         <FlatList
           testID="products_list"
           style={Theme.ProductList.list}
           data={productsList}
           initialNumToRender={8}
-          maxToRenderPerBatch={8}
+          maxToRenderPerBatch={9}
           updateCellsBatchingPeriod={8}
           keyExtractor={({id}, _) => `${id}`}
           renderItem={({ item }) => 
             <ProductListItem item={item} onPress={onPressItem} />
           }
           ItemSeparatorComponent={() => 
-            <View style={Theme.ProductList.listSeparator} />
+            <View style={Theme.App.separator} />
           }
           refreshControl={
             <RefreshControl
@@ -71,7 +91,7 @@ const ProductList = ({ testID }: { testID: string }) => {
               <ActivityIndicator size="large" color={Colors.bg} />
           }
         />
-      </View>
+      </Animated.View>
     </SafeAreaView>
   );
 };

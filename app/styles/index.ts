@@ -6,34 +6,53 @@ const Theme = {
         container: {
             flex: 1,
         },
-        container_bg_white: {
+        containerBgWhite: {
             flex: 1,
             backgroundColor: Colors.white,
         },
-        container_bg: {
+        containerBg: {
             flex: 1,
             backgroundColor: Colors.bg,
             alignItems: "center",
             justifyContent: "center",
         },
-        bg_white: {
+        bgWhite: {
             backgroundColor: Colors.bg
         },
-        title_start_app: {
+        titleStartApp: {
             marginVertical: 15,
             fontSize: 20,
             fontWeight: "bold",
             color: Colors.white,
         },
-        title_login_app: {
+        titleLoginApp: {
             fontSize: 28,
             fontWeight: "bold",
             color: Colors.white,
         },
-        logo_start_app: {
+        logoStartApp: {
             width: 120,
             height: 120,
             resizeMode: "contain",
+        },
+        errorDontFound: {
+            fontSize: 20,
+            fontWeight: "bold",
+            color: Colors.black,
+            textAlign: "center",
+            marginTop: 15,
+        },
+        titleText: {
+            color: Colors.black,
+            fontSize: 15,
+            fontWeight: "600"
+        },
+        subtitleText: {
+            fontSize: 12,
+            color: "grey",
+        },
+        separator: {
+            height: 10
         },
     }),
     ProductList: StyleSheet.create({
@@ -52,7 +71,7 @@ const Theme = {
             color: Colors.white
         },
         contentContainer: {
-            backgroundColor: "#e1e3e3",
+            backgroundColor: Colors.bgGrey,
             alignItems: "center",
             width: "100%",
             flex: 1,
@@ -64,45 +83,6 @@ const Theme = {
         list: {
             width: "100%",
             flex: 1
-        },
-        userCard: {
-            marginVertical: 5,
-            padding: 15,
-            borderRadius: 15,
-            backgroundColor: Colors.white,
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 1,
-            },
-            shadowOpacity: 0.22,
-            shadowRadius: 2.22,
-            elevation: 3,
-            flexDirection: "row",
-            alignItems: "center"
-        },
-        avatarContainer: {
-            width: 60,
-            alignItems: "center",
-            alignSelf: "center",
-            marginRight: 20
-        },
-        avatar: {
-            width: 55,
-            height: 55,
-            borderRadius: 5,
-            resizeMode: "stretch"
-        },
-        userName: {
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: "600"
-        },
-        separator: {
-            height: 5
-        },
-        listSeparator: {
-            height: 10
         },
         errorText: {
             color: Colors.black,
@@ -148,23 +128,95 @@ const Theme = {
         }
     }),
     ProductListItem: StyleSheet.create({
-        container_info: { 
-            flex: 1, 
-            alignItems: "flex-end" 
+        containerInfo: {
+            flex: 1,
+            alignItems: "flex-end"
         },
-        container_name_product: { 
-            width: "100%", 
-            alignItems: "flex-start" 
+        containerNameProduct: {
+            width: "100%",
+            alignItems: "flex-start"
         },
-        container_price: { 
-            backgroundColor: Colors.bg, 
-            padding: 8, 
-            borderRadius: 8, 
+        containerPrice: {
+            backgroundColor: Colors.bg,
+            padding: 8,
+            borderRadius: 8,
         },
-        value_price: { 
-            fontSize: 12, 
-            fontWeight: "bold", 
-            color: Colors.white 
+        valuePrice: {
+            fontSize: 12,
+            fontWeight: "bold",
+            color: Colors.white
+        },
+        productCard: {
+            marginVertical: 5,
+            padding: 20,
+            borderRadius: 15,
+            backgroundColor: Colors.white,
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowOpacity: 0.22,
+            shadowRadius: 2.22,
+            elevation: 3,
+            flexDirection: "row",
+            alignItems: "center"
+        },
+        imgContainer: {
+            width: 60,
+            alignItems: "center",
+            alignSelf: "center",
+            marginRight: 20
+        },
+        imgItemProduct: {
+            width: 80,
+            height: 80,
+            resizeMode: "center"
+        },
+    }),
+    ProductDetail: StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: Colors.bg
+        },
+        errorContainer: {
+            flex: 1,
+            backgroundColor: Colors.bgGrey
+        },
+        errorContentContainer: {
+            flex: 1,
+            backgroundColor: Colors.white,
+            borderRadius: 30,
+            marginTop: 20
+        },
+        imageContainer: {
+            width: "100%",
+            alignItems: "center"
+        },
+        imageWrapper: {
+            width: 330,
+            height: 330,
+            backgroundColor: "white",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 20
+        },
+        productImage: {
+            width: 280,
+            height: 280,
+            resizeMode: "center"
+        },
+        detailsContainer: {
+            flex: 1,
+            backgroundColor: Colors.white,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            marginTop: 20,
+            padding: 20
+        },
+        priceText: {
+            color: Colors.black,
+            fontSize: 20
         },
     })
 

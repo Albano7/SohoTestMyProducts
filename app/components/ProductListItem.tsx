@@ -1,37 +1,45 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { memo } from 'react'
 import Theme from '@app/styles'
-import Colors from '@app/styles/colors'
+import { priceParseToUSD } from '@app/hooks/products'
+
+type ProductListItemProps = {
+  item: ProductType,
+  onPress?: (value: ProductType) => void
+}
 
 const ProductListItem = memo(
-  ({ item, onPress }: { item: ProductType, onPress?: (value: ProductType) => void }) => (
+  ({ item, onPress }: ProductListItemProps) => (
     <TouchableOpacity
-      style={Theme.ProductList.userCard}
-      onPress={onPress? () => onPress(item) : undefined}
+      style={Theme.ProductListItem.productCard}
+      onPress={onPress ? () => onPress(item) : undefined}
     >
-      <View style={Theme.ProductList.avatarContainer}>
+      <View style={Theme.ProductListItem.imgContainer}>
         <Image
           src={item.image}
-          style={Theme.ProductList.avatar}
+          style={Theme.ProductListItem.imgItemProduct}
         />
       </View>
-      <View style={Theme.ProductListItem.container_info}>
-        <View style={Theme.ProductListItem.container_name_product}>
-          <Text style={Theme.ProductList.userName} numberOfLines={2}>
+      <View style={Theme.ProductListItem.containerInfo}>
+        <View style={Theme.ProductListItem.containerNameProduct}>
+          <Text style={Theme.App.titleText} numberOfLines={2}>
             {item.title}
           </Text>
+          <Text style={Theme.App.subtitleText} numberOfLines={1}>
+            {item.category}
+          </Text>
         </View>
-        <View style={Theme.ProductList.separator} />
-        <View style={Theme.ProductListItem.container_price}>
-          <Text style={Theme.ProductListItem.value_price}>
-            {`$${item.price} USD`}
+        <View style={Theme.App.separator} />
+        <View style={Theme.ProductListItem.containerPrice}>
+          <Text style={Theme.ProductListItem.valuePrice}>
+            {priceParseToUSD(item.price)}
           </Text>
         </View>
       </View>
     </TouchableOpacity>
   ),
   (prevProps, nextProps) => {
-    return prevProps.item.title === nextProps.item.title;
+    return prevProps.item.id === nextProps.item.id;
   },
 );
 

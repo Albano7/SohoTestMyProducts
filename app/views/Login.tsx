@@ -65,22 +65,22 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView style={Theme.App.container} >
-      <SafeAreaView style={Theme.App.container_bg_white}>
+      <SafeAreaView style={Theme.App.containerBgWhite}>
         <ScrollView style={Theme.App.container}>
           <Animated.View 
             style={[Theme.Login.headerContainer, headerAnimatedStyle]} 
             testID='header_container'
           >
             <Image
-              style={Theme.App.logo_start_app}
+              style={Theme.App.logoStartApp}
               source={require('@assets/ListadoProductos_logo.png')}
             />
-            <Text style={Theme.App.title_login_app}>
+            <Text style={Theme.App.titleLoginApp}>
               ListadoProductos
             </Text>
           </Animated.View>
           <View style={Theme.Login.formContainer}>
-            <Text style={Theme.App.title_start_app}>
+            <Text style={Theme.App.titleStartApp}>
               Bienvenido
             </Text>
             {stateLoadLogin === StateLoadLogin.ERROR_LOGIN && (
