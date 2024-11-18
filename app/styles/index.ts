@@ -23,7 +23,7 @@ const Theme = {
             marginVertical: 15,
             fontSize: 20,
             fontWeight: "bold",
-            color: Colors.white,
+            color: Colors.black,
         },
         titleLoginApp: {
             fontSize: 28,

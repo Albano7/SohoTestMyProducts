@@ -17,7 +17,7 @@ const Login = () => {
   const stateLoadLogin = useSelector((state: RootState) => state.user?.stateLoadLogin);
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const navigation = useNavigation();
-  
+
   const headerAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -67,8 +67,8 @@ const Login = () => {
     <KeyboardAvoidingView style={Theme.App.container} >
       <SafeAreaView style={Theme.App.containerBgWhite}>
         <ScrollView style={Theme.App.container}>
-          <Animated.View 
-            style={[Theme.Login.headerContainer, headerAnimatedStyle]} 
+          <Animated.View
+            style={[Theme.Login.headerContainer, headerAnimatedStyle]}
             testID='header_container'
           >
             <Image
@@ -109,6 +109,8 @@ const Login = () => {
                     onBlur={handleBlur('username')}
                     value={values.username}
                     autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="next"
                   />
                   {errors.username && (
                     <Text style={Theme.Login.inputError}>{errors.username}</Text>
@@ -122,6 +124,8 @@ const Login = () => {
                     value={values.password}
                     secureTextEntry={true}
                     autoCapitalize="none"
+                    onSubmitEditing={() => handleSubmit()}
+                    returnKeyType="go"
                   />
                   {errors.password && (
                     <Text style={Theme.Login.inputError}>{errors.password}</Text>

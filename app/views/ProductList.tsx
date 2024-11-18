@@ -8,13 +8,20 @@ import ProductListItem from '@app/components/ProductListItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import Routes from '@app/constants/routes';
+import { getProducts } from '@app/commands/products';
+import { NUMBER_RENDER_PRODUCTS } from '@app/constants/products';
 
-const ProductList = ({ testID }: { testID: string }) => {
-  const productsList = useSelector((state: RootState) => state.products.productsList);
+let pageNumberProductsList = 0
+
+const ProductList = () => {
+  const allProductsList = useSelector((state: RootState) => state.products.productsList);
+  const productsListLength = useSelector((state: RootState) => state.products.productsListLength);
   const productsListError = useSelector((state: RootState) => state.products?.productsListError);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
   const slideAnim = useRef(new Animated.Value(50)).current;
+  const [productsList, setProductsList] = useState<ProductType[]>([])
+  const isNotCompletedAllProducts = productsListLength && productsList.length < productsListLength
 
   useEffect(() => {
     Animated.timing(slideAnim, {
@@ -24,10 +31,17 @@ const ProductList = ({ testID }: { testID: string }) => {
     }).start();
   }, []);
 
+  useEffect(() => {
+    if (allProductsList && !refreshing) {
+      __DEV__ && console.log("Configure products list start")
+      setProductsList(allProductsList[pageNumberProductsList])
+    }
+  }, [allProductsList]);
+
   const onRefresh = async () => {
     setRefreshing(true);
     try {
-      // await getApiUsersList();
+      await getProducts();
     } finally {
       setRefreshing(false);
     }
@@ -41,6 +55,15 @@ const ProductList = ({ testID }: { testID: string }) => {
     );
   }
 
+  const handleLoadMore = () => {
+    if(allProductsList && isNotCompletedAllProducts){
+      pageNumberProductsList = pageNumberProductsList+1
+      __DEV__ && console.log("Load more products", pageNumberProductsList)
+      const newProductsList = productsList.concat(allProductsList[pageNumberProductsList])
+      setProductsList(newProductsList)
+    }
+  }
+
   return (
     <SafeAreaView style={Theme.ProductList.container}>
       <View style={Theme.ProductList.headerContainer}>
@@ -48,7 +71,7 @@ const ProductList = ({ testID }: { testID: string }) => {
           Listado de productos
         </Text>
       </View>
-      <Animated.View 
+      <Animated.View
         style={[
           Theme.ProductList.contentContainer,
           {
@@ -56,21 +79,21 @@ const ProductList = ({ testID }: { testID: string }) => {
               translateY: slideAnim
             }]
           }
-        ]} 
+        ]}
         testID='container_products_list'
       >
         <FlatList
           testID="products_list"
           style={Theme.ProductList.list}
           data={productsList}
-          initialNumToRender={8}
-          maxToRenderPerBatch={9}
-          updateCellsBatchingPeriod={8}
-          keyExtractor={({id}, _) => `${id}`}
-          renderItem={({ item }) => 
+          initialNumToRender={NUMBER_RENDER_PRODUCTS}
+          maxToRenderPerBatch={NUMBER_RENDER_PRODUCTS}
+          updateCellsBatchingPeriod={NUMBER_RENDER_PRODUCTS}
+          keyExtractor={({ id }) => `${id}`}
+          renderItem={({ item }) =>
             <ProductListItem item={item} onPress={onPressItem} />
           }
-          ItemSeparatorComponent={() => 
+          ItemSeparatorComponent={() =>
             <View style={Theme.App.separator} />
           }
           refreshControl={
@@ -90,6 +113,13 @@ const ProductList = ({ testID }: { testID: string }) => {
               :
               <ActivityIndicator size="large" color={Colors.bg} />
           }
+          ListFooterComponent={
+            isNotCompletedAllProducts ?
+              <ActivityIndicator size="large" color={Colors.bg} />
+            :
+              null
+          }
+          onEndReached={handleLoadMore}
         />
       </Animated.View>
     </SafeAreaView>

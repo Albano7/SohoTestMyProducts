@@ -1,0 +1,2 @@
+
+export const NUMBER_RENDER_PRODUCTS = 8
