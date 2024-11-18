@@ -14,7 +14,7 @@ Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimien
 
 ## Demo
 - Puedes decargar la app mediante el siguiente enlace [React Native App](https://drive.google.com/file/d/1lSV4pReliv7Sd-basRY58WEIONKsxqZO/view?usp=sharing) 
-- Puedes ver el video demo con el siguiente enlace [React Native App User List](https://drive.google.com/file/d/11aoh6ycK9ZKNcbPCY8NQppopPF2AwNUd/view?usp=sharing) 
+- Puedes ver el video demo con el siguiente enlace [React Native App Products List](https://drive.google.com/file/d/11aoh6ycK9ZKNcbPCY8NQppopPF2AwNUd/view?usp=sharing) 
 
 ## Dependencias usadas
 - React Native
@@ -37,6 +37,10 @@ Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimien
 1. Clona el repositorio del proyecto:
 ```
 git clone git@github.com:Albano7/SohoTestMyProducts.git
+```
+o
+```
+git clone https://github.com/Albano7/SohoTestMyProducts.git
 ```
 
 2. Navega hasta el directorio del proyecto:
@@ -110,5 +114,3 @@ DDD: Divide el código en torno a los diferentes dominios de la aplicación, lo 
 - `npm run android`: Ejecuta la aplicación en un emulador o dispositivo Android.
 - `npm run ios`: Ejecuta la aplicación en un emulador o dispositivo iOS.
 
-## Licencia
-Este proyecto se distribuye bajo la [Licencia MIT](LICENSE).
