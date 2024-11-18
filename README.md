@@ -1,7 +1,7 @@
 # Login and Product list - App - Documentación
 
 ## Descripción del proyecto
-Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimientos, desarrollada con TypeScript y React Native v0.76 sin el framework EXPO, esta app muestra 3 vistas: inicio de sesión, lista de productos y detalle de productos. He llamado a la aplicación "Lista de productos". La aplicación consume datos de la API (https://fakestoreapi.com/) y presenta la interfaz con diseños atractivos y responsivos.
+Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimientos, desarrollada con TypeScript y React Native v0.76.2 sin el framework EXPO, esta app muestra 3 vistas: inicio de sesión, lista de productos y detalle de productos. He llamado a la aplicación "Lista de productos". La aplicación consume datos de la API (https://fakestoreapi.com/) y presenta la interfaz con diseños atractivos y responsivos.
 
 ## Consultas realizadas
 
@@ -13,12 +13,12 @@ Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimien
 
 
 ## Demo
-- Puedes decargar la app mediante el siguiente enlace [React Native App]() 
-- Puedes ver el video demo con el siguiente enlace [React Native App User List]() 
+- Puedes decargar la app mediante el siguiente enlace [React Native App](https://drive.google.com/file/d/1lSV4pReliv7Sd-basRY58WEIONKsxqZO/view?usp=sharing) 
+- Puedes ver el video demo con el siguiente enlace [React Native App User List](https://drive.google.com/file/d/11aoh6ycK9ZKNcbPCY8NQppopPF2AwNUd/view?usp=sharing) 
 
 ## Dependencias usadas
 - React Native
-- React Native CLI (sin Expo)
+- React Native CLI
 - Redux
 - Axios
 - @react-native-async-storage/async-storage
@@ -60,7 +60,7 @@ npm test
 ```
 
 ## Estructura del proyecto
-El proyecto sigue una estructura de archivos y carpetas siguiendo el patron de diseño convencional para el proyecto DDD - Domain Driven Design y parte de los principios SOLID en React Native:
+El proyecto sigue una estructura de archivos y carpetas siguiendo el patron de diseño convencional para el proyecto FDD -  Feature-Driven Development, DDD - Domain Driven Design y parte de los principios SOLID en React Native:
 
 ```
 SohoTestMyProducts/
@@ -85,7 +85,7 @@ SohoTestMyProducts/
 └── README.md
 ```
 
-Esta estructura de carpetas se alinea con los principios del patrón Feature-Driven Development (FDD) y Domain-Driven Design (DDD):
+Como ya se mencionó esta estructura de carpetas se alinea con los principios del patrón Feature-Driven Development (FDD) y Domain-Driven Design (DDD):
 
 FDD: Organiza el código en torno a las características de la aplicación, lo que facilita el desarrollo y el mantenimiento a medida que el proyecto crece.
 DDD: Divide el código en torno a los diferentes dominios de la aplicación, lo que ayuda a mantener una arquitectura limpia y modular.
