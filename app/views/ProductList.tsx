@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, RefreshControl, Text, View, Animated } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, Text, View, Animated, TouchableOpacity, Alert } from 'react-native';
 import Colors from '@app/styles/colors';
 import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
@@ -10,18 +10,22 @@ import { StackActions, useNavigation } from '@react-navigation/native';
 import Routes from '@app/constants/routes';
 import { getProducts } from '@app/commands/products';
 import { NUMBER_RENDER_PRODUCTS } from '@app/constants/products';
+import { Icon } from "@react-native-material/core";
+import { onLogOutUser } from '@app/commands/loginUser';
 
 let pageNumberProductsList = 0
 
 const ProductList = () => {
-  const allProductsList = useSelector((state: RootState) => state.products.productsList);
-  const productsListLength = useSelector((state: RootState) => state.products.productsListLength);
-  const productsListError = useSelector((state: RootState) => state.products?.productsListError);
+  const { productsList: allProductsList, 
+    productsListLength, 
+    productsListError 
+  } = useSelector((state: RootState) => state.products);
+  const userProperties = useSelector((state: RootState) => state.user.userProperties);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
   const slideAnim = useRef(new Animated.Value(50)).current;
   const [productsList, setProductsList] = useState<ProductType[]>([])
-  const isNotCompletedAllProducts = productsListLength && productsList.length < productsListLength
+  const isActiveToLoadMore = allProductsList && productsList.length && productsListLength && productsList.length < productsListLength
 
   useEffect(() => {
     Animated.timing(slideAnim, {
@@ -56,17 +60,54 @@ const ProductList = () => {
   }
 
   const handleLoadMore = () => {
-    if(allProductsList && isNotCompletedAllProducts){
-      pageNumberProductsList = pageNumberProductsList+1
+    if (isActiveToLoadMore) {
+      pageNumberProductsList = pageNumberProductsList + 1
       __DEV__ && console.log("Load more products", pageNumberProductsList)
       const newProductsList = productsList.concat(allProductsList[pageNumberProductsList])
       setProductsList(newProductsList)
     }
   }
 
+  const closeSesion = () => {
+    onLogOutUser().then((readyToLogOut: boolean) => {
+      if(readyToLogOut)
+        navigation.dispatch(
+          StackActions.replace(Routes.Login)
+        );
+    })
+  }
+
+  const handleAlertCloseSesion = () => {
+    Alert.alert(
+      "Atención",
+      "¿Estás seguro de que quieres cerrar sesión?",
+      [
+        { 
+          text: "No", 
+          style: 'cancel'
+        },
+        {
+          text: "Si",
+          style: 'destructive',
+          onPress: closeSesion
+        },
+      ]
+    );
+  }
+
   return (
     <SafeAreaView style={Theme.ProductList.container}>
       <View style={Theme.ProductList.headerContainer}>
+        <View style={Theme.ProductList.optionsContainer}>
+          <Text style={Theme.App.wellcomeText}>
+            {`Bienvenido ${userProperties?.firstName} ${userProperties?.lastName}!`}
+          </Text>
+          <TouchableOpacity onPress={handleAlertCloseSesion}>
+            <Text style={Theme.App.wellcomeText}>
+              {"Cerrar sesión"}
+            </Text>
+          </TouchableOpacity>
+        </View>
         <Text style={Theme.ProductList.headerTitle}>
           Listado de productos
         </Text>
@@ -114,9 +155,9 @@ const ProductList = () => {
               <ActivityIndicator size="large" color={Colors.bg} />
           }
           ListFooterComponent={
-            isNotCompletedAllProducts ?
+            isActiveToLoadMore?
               <ActivityIndicator size="large" color={Colors.bg} />
-            :
+              :
               null
           }
           onEndReached={handleLoadMore}

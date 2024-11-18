@@ -54,6 +54,11 @@ const Theme = {
         separator: {
             height: 10
         },
+        wellcomeText: {
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: "300"
+        }
     }),
     ProductList: StyleSheet.create({
         container: {
@@ -62,6 +67,8 @@ const Theme = {
             backgroundColor: Colors.bg,
         },
         headerContainer: {
+            width: "100%",
+            paddingHorizontal: 20,
             marginVertical: 20
         },
         headerTitle: {
@@ -88,7 +95,13 @@ const Theme = {
             color: Colors.black,
             fontSize: 15,
             fontWeight: "600"
-        }
+        },
+        optionsContainer: { 
+            width: "100%", 
+            flexDirection: "row", 
+            justifyContent: "space-between", 
+            marginBottom: 20 
+        },
     }),
     Login: StyleSheet.create({
         headerContainer: {

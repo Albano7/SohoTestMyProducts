@@ -25,7 +25,7 @@ export const userSlice = createSlice({
     resetUserProperties: (state, _) => {
       state.userProperties = undefined
     },
-    setLoginUserLoadState: (state, action: PayloadAction<{ stateLoadLogin: StateLoadLogin }>) => {
+    setLoginUserLoadState: (state, action: PayloadAction<{ stateLoadLogin?: StateLoadLogin }>) => {
       state.stateLoadLogin = action.payload.stateLoadLogin
     },
   },

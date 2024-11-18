@@ -1,10 +1,11 @@
 import {  loginUserApi } from "@app/api/users";
 import { StateLoadLogin, STORAGE_USER_API_KEY } from "@app/constants/user";
-import { setLoginUserLoadState } from "@app/features/user/userSlice";
+import { resetUserProperties, setLoginUserLoadState } from "@app/features/user/userSlice";
 import { store } from "@app/store";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getUserInfo } from "@app/commands/verifyingUser";
 import { getProducts } from "@app/commands/products";
+import { resetProducts } from "@app/features/products/productsSlice";
 
 /// Login de usuario
 const onLoginUser = async (loginData: LoginType): Promise<void> => {
@@ -25,6 +26,22 @@ const onLoginUser = async (loginData: LoginType): Promise<void> => {
     } catch (e) {
         console.error("ERROR AsyncStorage", e);
     }
+}
+
+/// Cerrar sesión de usuario
+export const onLogOutUser = async (): Promise<boolean> => {
+    __DEV__ && console.log("onLogOutUser start")
+    const dispatch = store.dispatch
+    dispatch(setLoginUserLoadState({ stateLoadLogin: undefined }))
+    dispatch(resetUserProperties({}))
+    dispatch(resetProducts({}))
+    try {
+        await AsyncStorage.removeItem(STORAGE_USER_API_KEY)
+        return true
+    } catch (e) {
+        console.error("ERROR AsyncStorage", e);
+    }
+    return false
 }
 
 export default onLoginUser
