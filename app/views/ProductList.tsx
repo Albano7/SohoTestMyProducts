@@ -15,11 +15,11 @@ import { onLogOutUser } from '@app/commands/loginUser';
 let pageNumberProductsList = 0
 
 const ProductList = () => {
-  const { productsList: allProductsList, 
-    productsListLength, 
-    productsListError 
+  const { productsList: allProductsList,
+    productsListLength,
+    productsListError
   } = useSelector((state: RootState) => state.products);
-  const { userProperties, isOnline} = useSelector((state: RootState) => state.user);
+  const { userProperties, isOnline } = useSelector((state: RootState) => state.user);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
   const slideAnim = useRef(new Animated.Value(50)).current;
@@ -42,11 +42,13 @@ const ProductList = () => {
   }, [allProductsList]);
 
   const onRefresh = async () => {
-    setRefreshing(true);
-    try {
-      await getProducts();
-    } finally {
-      setRefreshing(false);
+    if (isOnline) {
+      setRefreshing(true);
+      try {
+        await getProducts();
+      } finally {
+        setRefreshing(false);
+      }
     }
   };
 
@@ -69,7 +71,7 @@ const ProductList = () => {
 
   const closeSesion = () => {
     onLogOutUser().then((readyToLogOut: boolean) => {
-      if(readyToLogOut)
+      if (readyToLogOut)
         navigation.dispatch(
           StackActions.replace(Routes.Login)
         );
@@ -81,8 +83,8 @@ const ProductList = () => {
       "Atención",
       "¿Estás seguro de que quieres cerrar sesión?",
       [
-        { 
-          text: "No", 
+        {
+          text: "No",
           style: 'cancel'
         },
         {
@@ -98,7 +100,7 @@ const ProductList = () => {
     <SafeAreaView style={Theme.ProductList.container}>
       <View style={Theme.ProductList.headerContainer}>
         <View style={Theme.ProductList.optionsContainer}>
-          {isOnline && userProperties?
+          {isOnline && userProperties ?
             <Text style={Theme.App.wellcomeText}>
               {`Bienvenido ${userProperties?.firstName} ${userProperties?.lastName}!`}
             </Text>
@@ -153,13 +155,13 @@ const ProductList = () => {
             !isOnline || productsListError ?
               <Text style={Theme.ProductList.errorText}>
                 {`Ups! hay un error, vuelva a intentarlo
-                  ${!isOnline? "\n\nNo hay conexión a Internet" : ""}`}
+                  ${!isOnline ? "\n\nNo hay conexión a Internet" : ""}`}
               </Text>
               :
               <ActivityIndicator size="large" color={Colors.bg} />
           }
           ListFooterComponent={
-            isActiveToLoadMore?
+            isActiveToLoadMore ?
               <ActivityIndicator size="large" color={Colors.bg} />
               :
               null
