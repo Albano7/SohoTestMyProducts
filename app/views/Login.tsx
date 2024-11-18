@@ -49,7 +49,7 @@ const Login = () => {
     onLoginUser(values)
   }
 
-  const isLoadingLogin = stateLoadLogin === StateLoadLogin.LOADING_LOGIN
+  const isLoadingLogin = stateLoadLogin === StateLoadLogin.LOADING_LOGIN || stateLoadLogin === StateLoadLogin.SUCCESS_LOGIN
 
   const headerAnimatedStyle = {
     opacity: headerAnimation,
