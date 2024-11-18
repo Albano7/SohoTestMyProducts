@@ -2,7 +2,7 @@
 ![Descripción de la imagen](./assets/ListadoProductos_logo.png)
 
 ## Descripción del proyecto
-Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimientos, desarrollada con TypeScript y React Native v0.76.2 sin el framework EXPO, esta app muestra 3 vistas: inicio de sesión, lista de productos y detalle de productos. He llamado a la aplicación "Lista de productos". La aplicación consume datos de la API (https://fakestoreapi.com/) y presenta la interfaz con diseños atractivos y responsivos.
+Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimientos, desarrollada con TypeScript y React Native v0.76.2 sin el framework EXPO, esta app muestra 3 vistas: inicio de sesión, lista de productos y detalle de productos. He llamado a la aplicación "Lista de productos" y le asigné un icono de app. La aplicación consume datos de la API (https://fakestoreapi.com/) y presenta la interfaz con diseños atractivos y responsivos.
 
 ## Consultas realizadas
 
@@ -58,6 +58,15 @@ npm install
 ```
 npm start
 ```
+Luego puedes realizar el debug de la app desde xcode o androidStudios 
+
+o
+
+Inicia el servidor de desarrollo de React Native y ejecución de emulador de Android:
+```
+npm run android
+```
+
 
 5. Ejecutar pruebas unitarias
 ```
