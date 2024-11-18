@@ -14,19 +14,19 @@ Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimien
 
 
 ## Demo
-- Puedes decargar la app mediante el siguiente enlace [React Native App](https://drive.google.com/file/d/1lSV4pReliv7Sd-basRY58WEIONKsxqZO/view?usp=sharing) 
+- Puedes descargar la app mediante el siguiente enlace [React Native App](https://drive.google.com/file/d/1lSV4pReliv7Sd-basRY58WEIONKsxqZO/view?usp=sharing) 
 - Puedes ver el video demo con el siguiente enlace [React Native App Products List](https://drive.google.com/file/d/11aoh6ycK9ZKNcbPCY8NQppopPF2AwNUd/view?usp=sharing) 
 
 ## Dependencias usadas
-- React Native
-- React Native CLI
-- Redux
-- Axios
-- @react-native-async-storage/async-storage
-- @react-native-material/core
-- @react-navigation
+- React Native: Framework para el desarrollo de aplicaciones móviles multiplataforma.
+- TypeScript: Lenguaje de programación que agrega tipado estático a JavaScript.
+- Redux: Librería para administrar el estado de la aplicación.
+- Axios: Cliente HTTP para realizar solicitudes a la API.
+- @react-native-async-storage/async-storage: Para el almacenamiento local de datos.
+- @react-native-material/core: Componentes de interfaz de usuario basados en Material Design.
+- @react-navigation: Navegación entre pantallas.
 - formik
-- yup
+- Formik y Yup: Para la gestión de formularios y validación de datos.
 
 ## Requisitos del sistema
 - Node.js (versión 18 o superior)
@@ -58,17 +58,15 @@ npm install
 ```
 npm start
 ```
-Luego puedes realizar el debug de la app desde xcode o androidStudios 
 
-o
-
-Inicia el servidor de desarrollo de React Native y ejecución de emulador de Android:
+5. Ejecutar en un emulador o dispositivo:
 ```
-npm run android
+npm run android  # Para Android
+npm run ios     # Para iOS
 ```
 
 
-5. Ejecutar pruebas unitarias
+6. Ejecutar pruebas unitarias
 ```
 npm test
 ```
