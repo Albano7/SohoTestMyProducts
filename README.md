@@ -1,4 +1,5 @@
-# Login and Product list - App - Documentación
+# Lista de productos - App Test
+![Descripción de la imagen](./assets/ListadoProductos_logo.png)
 
 ## Descripción del proyecto
 Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimientos, desarrollada con TypeScript y React Native v0.76.2 sin el framework EXPO, esta app muestra 3 vistas: inicio de sesión, lista de productos y detalle de productos. He llamado a la aplicación "Lista de productos". La aplicación consume datos de la API (https://fakestoreapi.com/) y presenta la interfaz con diseños atractivos y responsivos.
