@@ -12,7 +12,7 @@ const screenOptionsGeneral: NativeStackNavigationOptions = {
 }
 
 const RootStack = createNativeStackNavigator({
-    initialRouteName: 'SplashScreen',
+    initialRouteName: Routes.SplashScreen,
     screenOptions: screenOptionsGeneral,
     screens: {
         [Routes.SplashScreen]: SplashScreen,

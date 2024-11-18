@@ -103,6 +103,7 @@ const Login = () => {
               }) => (
                 <View style={Theme.Login.formInputContainer}>
                   <TextInput
+                    testID='imput_username'
                     label="Nombre de usuario"
                     variant="standard"
                     onChangeText={handleChange('username')}
@@ -116,6 +117,7 @@ const Login = () => {
                     <Text style={Theme.Login.inputError}>{errors.username}</Text>
                   )}
                   <TextInput
+                    testID='imput_password'
                     label="Contraseña"
                     variant="standard"
                     onChangeText={handleChange('password')}
@@ -131,6 +133,7 @@ const Login = () => {
                     <Text style={Theme.Login.inputError}>{errors.password}</Text>
                   )}
                   <Button
+                    testID='btn_submit'
                     title="Iniciar sesión"
                     style={Theme.Login.loginButton}
                     color={Colors.bg}
