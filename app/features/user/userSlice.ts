@@ -6,10 +6,12 @@ export interface initialStateProps {
   userProperties?: UserSimpleType,
   userPropertiesError?: ErrorApiType,
   stateLoadLogin?: StateLoadLogin
+  isOnline: boolean,
 }
 
 
 const initialState: initialStateProps = {
+  isOnline: false,
 }
 
 export const userSlice = createSlice({
@@ -28,9 +30,12 @@ export const userSlice = createSlice({
     setLoginUserLoadState: (state, action: PayloadAction<{ stateLoadLogin?: StateLoadLogin }>) => {
       state.stateLoadLogin = action.payload.stateLoadLogin
     },
+    setIsOffline: (state, action: PayloadAction<{ isOnline: boolean }>) => {
+      state.isOnline = action.payload.isOnline
+    },
   },
 })
 
-export const { setUserProperties, setUserError, resetUserProperties, setLoginUserLoadState } = userSlice.actions
+export const { setUserProperties, setUserError, resetUserProperties, setLoginUserLoadState, setIsOffline } = userSlice.actions
 
 export default userSlice.reducer

@@ -25,8 +25,8 @@ Este proyecto es una aplicación móvil de ejemplo para demostrar mis conocimien
 - @react-native-async-storage/async-storage: Para el almacenamiento local de datos.
 - @react-native-material/core: Componentes de interfaz de usuario basados en Material Design.
 - @react-navigation: Navegación entre pantallas.
-- formik
 - Formik y Yup: Para la gestión de formularios y validación de datos.
+- @react-native-community/netinfo: Validación de conexión a red
 
 ## Requisitos del sistema
 - Node.js (versión 18 o superior)

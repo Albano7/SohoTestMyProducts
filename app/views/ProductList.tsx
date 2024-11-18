@@ -10,7 +10,6 @@ import { StackActions, useNavigation } from '@react-navigation/native';
 import Routes from '@app/constants/routes';
 import { getProducts } from '@app/commands/products';
 import { NUMBER_RENDER_PRODUCTS } from '@app/constants/products';
-import { Icon } from "@react-native-material/core";
 import { onLogOutUser } from '@app/commands/loginUser';
 
 let pageNumberProductsList = 0
@@ -20,7 +19,7 @@ const ProductList = () => {
     productsListLength, 
     productsListError 
   } = useSelector((state: RootState) => state.products);
-  const userProperties = useSelector((state: RootState) => state.user.userProperties);
+  const { userProperties, isOnline} = useSelector((state: RootState) => state.user);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
   const slideAnim = useRef(new Animated.Value(50)).current;
@@ -99,9 +98,13 @@ const ProductList = () => {
     <SafeAreaView style={Theme.ProductList.container}>
       <View style={Theme.ProductList.headerContainer}>
         <View style={Theme.ProductList.optionsContainer}>
-          <Text style={Theme.App.wellcomeText}>
-            {`Bienvenido ${userProperties?.firstName} ${userProperties?.lastName}!`}
-          </Text>
+          {isOnline && userProperties?
+            <Text style={Theme.App.wellcomeText}>
+              {`Bienvenido ${userProperties?.firstName} ${userProperties?.lastName}!`}
+            </Text>
+            :
+            <View />
+          }
           <TouchableOpacity onPress={handleAlertCloseSesion}>
             <Text style={Theme.App.wellcomeText}>
               {"Cerrar sesión"}
@@ -147,9 +150,10 @@ const ProductList = () => {
             />
           }
           ListEmptyComponent={() =>
-            productsListError ?
+            !isOnline || productsListError ?
               <Text style={Theme.ProductList.errorText}>
-                Ups! hay un error, vuelva a intentarlo
+                {`Ups! hay un error, vuelva a intentarlo
+                  ${!isOnline? "\n\nNo hay conexión a Internet" : ""}`}
               </Text>
               :
               <ActivityIndicator size="large" color={Colors.bg} />

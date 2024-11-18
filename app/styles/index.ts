@@ -94,7 +94,8 @@ const Theme = {
         errorText: {
             color: Colors.black,
             fontSize: 15,
-            fontWeight: "600"
+            fontWeight: "600",
+            textAlign: "center",
         },
         optionsContainer: { 
             width: "100%", 

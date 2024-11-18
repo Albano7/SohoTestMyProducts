@@ -8,9 +8,14 @@ const _errorRest = (errorNumber: number): ErrorApiType => ({
 })
 
 export const getProductsApi = async (): Promise<ProductsApiRestType> => {
-    const request = await axios.get(`${apiRest.products}`)
-    if (validateStatus(request.status)) {
-        return { products: request.data }
+    try {
+        const request = await axios.get(`${apiRest.products}`)
+        if (validateStatus(request.status)) {
+            return { products: request.data }
+        }
+        return { error: _errorRest(request.status) }
+    } catch (error) {
+        __DEV__ && console.error("ERROR API REST getProductsApi", error)
+        return { error: _errorRest(400) }
     }
-    return { error: _errorRest(request.status) }
 }

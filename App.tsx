@@ -1,6 +1,6 @@
 import { store } from '@app/store';
 import Colors from '@app/styles/colors';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StatusBar,
   View,
@@ -8,6 +8,8 @@ import {
 import { Provider } from 'react-redux';
 import Navigation from '@app/hooks/navigation';
 import Theme from '@app/styles';
+import NetInfo, {NetInfoState} from "@react-native-community/netinfo";
+import { setIsOffline } from '@app/features/user/userSlice';
 
 
 function App(): React.JSX.Element {
@@ -23,10 +25,26 @@ function App(): React.JSX.Element {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Provider store={store}>
-        <Navigation />
+        <NavigationProvider />
       </Provider>
     </View>
   );
+}
+
+const NavigationProvider = () => {
+  const dispatch = store.dispatch
+  
+  useEffect(() => {
+    const removeNetInfoSubscription = NetInfo.addEventListener((state: NetInfoState) => {
+      const isOnline = state.isConnected && state.isInternetReachable
+      __DEV__ && console.log("Is connected online")
+      dispatch(setIsOffline({ isOnline: !!isOnline }))
+    })
+
+    return () => removeNetInfoSubscription()
+  }, [])
+
+  return <Navigation />
 }
 
 
